@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Events</h1>
+
+
+
+
+    <% @events.each do |event| %>
+
+        <%= event.title %> <br>
+        <%= event.description %> <br>
+        <%= event.address %> <br>
+        <%= event.user.username %> <br>
+        <%= event.photo %> <br>
+        <%= event.lat %> <br>
+        <%= event.lng %>
+        <%= link_to 'Show', event %>
+        <%= link_to 'Edit', edit_event_path(event) %>
+        <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+    <% end %>
+
+
+<br>
+
+<%= link_to 'New Event', new_event_path %>
+

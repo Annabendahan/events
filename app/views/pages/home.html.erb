@@ -1,0 +1,9 @@
+
+
+<% @events.each do |event| %>
+<%= event.title %>
+<%= event.description %>
+<%= event.address %>
+<%= event.capacity %>
+<% end %>
+<%= link_to "Create event", new_event_path, class: "btn btn-blue btn-lg" %>
