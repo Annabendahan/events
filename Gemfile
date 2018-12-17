@@ -28,8 +28,8 @@ gem 'turbolinks', '~> 5'
 gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'devise'
+gem 'carrierwave', '~> 1.2'
 
-gem 'dotenv-rails', groups: [:development, :test]
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
