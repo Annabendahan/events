@@ -1,27 +1,40 @@
+<% require 'date' %>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Events</h1>
+
+<div class="mibanner" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.1) 70%), url('<%= image_path 'meghan-holmes-779221-unsplash.jpg' %>');">
+   <h1>NOS COURS</h1>
+</div>
 
 
 
+<div class="date"> <%= Date.today %> </div>
 
-    <% @events.each do |event| %>
+    <% @events.order(:starting_time).each do |event| %>
 
-        <%= event.title %> <br>
-        <%= event.description %> <br>
-        <%= event.address %> <br>
-        <%= event.user.username %> <br>
-        <%= event.photo %> <br>
-        <%= event.lat %> <br>
-        <%= event.lng %>
-        <%= link_to 'Show', event %>
-        <%= link_to 'Edit', edit_event_path(event) %>
-        <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<div class="event" >
+        <p> <%= event.title %> </p>
+        <p><%= event.description %> </p>
+        <p><%= event.address %> </p>
+        <p><%= event.user.username %> </p>
+        <p><%= event.photo %> </p>
+        <p><%= event.capacity %> </p>
+        <p><%= event.starting_time %> </p>
+        <p>Amount: <%= humanized_money_with_symbol(event.price) %></p>
+
+
+        <%= link_to 'Réserver', '#', class: 'button-round' %>
+        <%#= link_to 'Edit', edit_event_path(event) %>
+        <%#= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to "", event, class: "card-link" %>
+ </div>
 
     <% end %>
 
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
+<%#= link_to 'New Event', new_event_path %>
 

@@ -1,2 +1,6 @@
 CLOUDINARY_URL: "cloudinary://611281483686993:GQkV9MsvmJz6fH0lsorukz83aQY@dkwihnp9i"
 
+
+development:
+  STRIPE_PUBLISHABLE_KEY: "pk_test_dM88ant9X1EFDZUBdlmR3DG6"
+  STRIPE_SECRET_KEY: "sk_test_1DCABjj4Nu9QD1S1htkiIl0m"
