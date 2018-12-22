@@ -28,13 +28,20 @@ margin-bottom: 10px;
 }
 
 
+.event-show{
+  text-align: center;
+  background: white;
+  padding: 50px 50px;
+  margin: 20px 100px;
+}
+
 .button-round{
 border-radius: 50px;
 border: solid 2px  #3accb3;
 color:  #3accb3;
 padding: 5px 10px;
 text-decoration: none;
-z-index: 5;
+z-index: 500;
 }
 
 .button-round:hover{
@@ -45,8 +52,8 @@ z-index: 5;
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 0;
-  width: 100%;
+  left: 0;
+  width: 90%;
   height: 100%;
   z-index: 2;
   background: black;

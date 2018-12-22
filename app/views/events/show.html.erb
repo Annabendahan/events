@@ -1,55 +1,44 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+<div class="event-show">
 
-<p>
-  <strong>Address:</strong>
-  <%= @event.address %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @event.user.username %>
-</p>
-
-<p>
-  <strong>Photo:</strong>
-  <%= @event.photo %>
-</p>
-
-<p>
-  <strong>Lat:</strong>
-  <%= @event.lat %>
-</p>
-
-<p>
-  <strong>Lng:</strong>
-  <%= @event.lng %>
-</p>
+<p><%= @event.title %></p>
+<p><%= @event.description %></p>
+<p><%= @event.address %></p>
+<p><%= @event.photo %></p>
+<p> <%= @teacher.name %> </p>
+<p><%= @event.starting_time %> </p>
+<p><%= humanized_money_with_symbol(@event.price) %></p>
+  <% if  @orders.count == @event.capacity %>
+    <p> FULL </p>
+  <% else %>
+    <p> <%= @orders.count %> / <%= @event.capacity %> </p>
+  <% end %>
 
 
-<%= form_tag orders_path do %>
-  <%= hidden_field_tag 'event_id', @event.id %>
-  <%= submit_tag 'Purchase', class: 'btn btn-primary' %>
+<% if @event.has_ordered?(current_user) %>
+<p> Annuler </p>
+<% else %>
+    <%= form_tag orders_path do %>
+        <%= hidden_field_tag 'event_id', @event.id %>
+        <%= submit_tag 'Réserver', class: 'button-round' %>
+    <%end%>
 <% end %>
 
 
-<% if user_signed_in? %>
-  <% if current_user.id == @event.user_id %>
-  <%= link_to 'Edit', edit_event_path(@event) %> |
-  <%else %>
+
+
+Voir qui a réservé
+
+<% @orders.each do |order| %>
+  <%= order.user.email %>
+<% end %>
+
+
+
   <%= link_to "Participer", event_participations_path(@event), method: :post, class: 'btn'%>
-  <% end%>
-<%end%>
-<%= link_to 'Back', events_path %>
+<%#= link_to 'Back', events_path %>
 
-Participants :
 
+</div>

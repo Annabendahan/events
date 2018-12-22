@@ -5,12 +5,16 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
     @participations = Participation.all
+    @teachers = Teacher.all
 
   end
 
   # GET /events/1
   def show
     @event = Event.find(params[:id])
+    @orders = Order.all.where(event_sku: @event.sku, state: 'paid')
+    @teacher = Teacher.find_by(id: @event.teacher_id)
+
   end
 
   # GET /events/new

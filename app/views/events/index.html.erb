@@ -7,32 +7,72 @@
    <h1>NOS COURS</h1>
 </div>
 
-
-
 <div class="date"> <%= Date.today %> </div>
 
-    <% @events.order(:starting_time).each do |event| %>
-
-
-<div class="event" >
+  <% @events.order(:starting_time).each do |event| %>
+    <% if event.date == Date.today %>
+      <div class="event" >
         <p> <%= event.title %> </p>
         <p><%= event.description %> </p>
         <p><%= event.address %> </p>
         <p><%= event.user.username %> </p>
-        <p><%= event.photo %> </p>
         <p><%= event.capacity %> </p>
         <p><%= event.starting_time %> </p>
-        <p>Amount: <%= humanized_money_with_symbol(event.price) %></p>
+        <% @teachers.each do |t| %>
+          <% if t.id == event.teacher_id %>
+          <p>  <%= t.name.capitalize %> </p>
+          <% end %>
+        <%end%>
+        <p><%= humanized_money_with_symbol(event.price) %></p>
 
+        <% if event.has_ordered?(current_user) %>
+          <p> Annuler </p>
+        <% else %>
+          <%= form_tag orders_path do %>
+          <%= hidden_field_tag 'event_id', event.id %>
+          <%= submit_tag 'Réserver', class: 'button-round' %>
+        <%end%>
+  <% end %>
 
-        <%= link_to 'Réserver', '#', class: 'button-round' %>
         <%#= link_to 'Edit', edit_event_path(event) %>
         <%#= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <%= link_to "", event, class: "card-link" %>
- </div>
-
+        <%= link_to "", event, class: "card-link" %>
+      </div>
     <% end %>
+  <% end %>
 
+
+<div class="date"> <%= Date.tomorrow %> </div>
+
+<% @events.order(:starting_time).each do |event| %>
+    <% if event.date == Date.tomorrow %>
+      <div class="event" >
+        <p> <%= event.title %> </p>
+        <p><%= event.description %> </p>
+        <p><%= event.address %> </p>
+        <p><%= event.user.username %> </p>
+        <p><%= event.capacity %> </p>
+        <p><%= event.starting_time %> </p>
+        <% @teachers.each do |t| %>
+          <% if t.id == event.teacher_id %>
+          <p> <%= t.name.capitalize %> </p>
+          <% end %>
+        <%end%>
+        <p> <%= humanized_money_with_symbol(event.price) %></p>
+       <% if event.has_ordered?(current_user) %>
+          <p> Annuler </p>
+        <% else %>
+          <%= form_tag orders_path do %>
+          <%= hidden_field_tag 'event_id', event.id %>
+          <%= submit_tag 'Réserver', class: 'button-round' %>
+        <%end%>
+  <% end %>
+        <%#= link_to 'Edit', edit_event_path(event) %>
+        <%#= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to "", event, class: "card-link" %>
+      </div>
+    <% end %>
+  <% end %>
 
 <br>
 

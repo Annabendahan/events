@@ -6,7 +6,7 @@ def create
     @participation.user = current_user
 
     if @participation.save
-      redirect_to event_path(@event), notice: 'Event was successfully created.'
+      redirect_to event_path(@event), notice: 'Your participation has been taken into account!'
     else
       render :new
     end

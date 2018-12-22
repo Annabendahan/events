@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
 
   def create
   event = Event.find(params[:event_id])
-  order  = Order.create!(event_sku: event.sku, amount: event.price, state: 'pending', user: current_user)
+  order  = Order.create!(event_sku: event.sku, amount: event.price, state: 'pending', user: current_user, event: event)
   redirect_to new_order_payment_path(order)
   end
 
